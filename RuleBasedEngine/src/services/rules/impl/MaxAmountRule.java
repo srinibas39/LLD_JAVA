@@ -1,12 +1,12 @@
-package rules.Implementation;
+package services.rules.impl;
 
 import model.Expense;
-import rules.ExpenseRule;
-import rules.Violation;
+import services.rules.IExpenseRule;
+import services.rules.Violation;
 
 import java.util.Optional;
 
-public class MaxAmountRule implements ExpenseRule {
+public class MaxAmountRule implements IExpenseRule {
 
     private final Double maxAmount;
 
@@ -17,7 +17,7 @@ public class MaxAmountRule implements ExpenseRule {
     @Override
     public Optional<Violation> validate(Expense expense) {
         if(expense.getAmount() > maxAmount){
-            return Optional.of(Violation.getViolationMessage("Expense amount "+expense.getAmount()+" is more than allowed"));
+            return Optional.of(Violation.getViolationMessage(expense.getExpenseType()+" Expense amount "+expense.getAmount()+" > " + maxAmount + " is not allowed"));
         }
         return Optional.empty();
     }
