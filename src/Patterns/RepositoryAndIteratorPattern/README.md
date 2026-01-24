@@ -30,3 +30,9 @@ Provides a way to access elements of a collection sequentially without exposing 
 - Database cursors
 - File processing
 - Stream processing
+
+**Types of Iterator**
+- Sequential Iterator - Forward Iterator , backward Iterator
+- Randomised Iterator
+- Jumper Iterator  
+
