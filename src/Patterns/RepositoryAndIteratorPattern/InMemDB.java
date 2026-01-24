@@ -22,7 +22,7 @@ public class InMemDB {
 
     
     public void seededUsers() {
-       for(int i = 1; i <= 1000; i++) {
+       for(int i = 1; i <= 10; i++) {
         this.users.add("User" + i);
        }
     }
