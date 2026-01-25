@@ -7,6 +7,12 @@ public class Latte extends Coffee {
         this.ingredients = ingredients;
     }
 
+    Latte(Ingredients ingredients , TypeOfCoffee typeOfCoffee) {
+        this.ingredients = ingredients;
+        this.typeOfCoffee = typeOfCoffee;
+    }
+
+
     @Override
     public void brew() {
         System.out.println("Brewing Latte");

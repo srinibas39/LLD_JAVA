@@ -16,7 +16,18 @@ public class CoffeeFactory {
         }
         return coffee;
     }
-    
+
+    public static Coffee getCoffee(String whichCoffeee , String milk , String sugar , String coffeebeans , String price , String description){
+        Coffee coffee = null;
+        if(whichCoffeee.equals("Cappachino")){
+            coffee = new Cappachino(new CappachinoIngriedients(milk , sugar , coffeebeans));
+        } else if(whichCoffeee.equals("Expresso")){
+            coffee = new Expresso(new ExpressoIngredients(milk , sugar , coffeebeans));
+        } else if(whichCoffeee.equals("Latte")){
+            coffee = new Latte(new LatteIngriedients(milk, sugar, coffeebeans) , new LatteType(price , description));
+        }
+        return coffee;
+    }
 }
 
 //problem with this approach is class explostion 
