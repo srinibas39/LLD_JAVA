@@ -2,8 +2,10 @@
 
 ### What is it?
 A factory creates objects for you instead of using `new` directly.
-We have normal factory
-and another abstract factory.
+
+**Types:**
+- **Simple Factory** (this example): One factory creates all coffee types
+- **Abstract Factory**: Multiple factories for different families (e.g., Italian coffee factory, American coffee factory) , [muliple factories inside an industry]
 
 ### Why use it?
 - **Avoid tight coupling**: Don't hardcode `new CoffeeType()` everywhere
