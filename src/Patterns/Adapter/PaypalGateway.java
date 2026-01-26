@@ -1,5 +1,6 @@
 package Patterns.Adapter;
 
+//Third party APIs
 public class PaypalGateway {
 
     public void makePayment(double amount) {

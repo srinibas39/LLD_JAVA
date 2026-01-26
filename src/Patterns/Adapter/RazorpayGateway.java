@@ -1,8 +1,9 @@
 package Patterns.Adapter;
 
+// Third party APIs
 public class RazorpayGateway {
 
-    //add Apis
+    
 
     public void doPayment(double amount) {
         System.out.println("Payment of " + amount + " made via Razorpay");
