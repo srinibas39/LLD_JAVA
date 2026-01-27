@@ -34,3 +34,5 @@ Coffee coffee = CoffeeFactory.getCoffee("Cappachino", ...);  // ✅ Loose coupli
 - `Cappachino`, `Latte`, `Expresso` → Concrete implementations
 - `CoffeeFactory` → Creates the right coffee object
 - `CoffeeProcessor` → Uses factory to prepare coffee
+
+Factory Pattern is a creational design pattern that is used to create objects without exposing the creation logic to the client and refer to newly created object using a common interface.
