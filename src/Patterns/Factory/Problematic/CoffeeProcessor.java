@@ -23,7 +23,4 @@ public class CoffeeProcessor {
 //4. We are not following the dependency inversion principle - CoffeeProcessor is dependent on the concrete coffee classes
 //5. We are not following the liskov substitution principle - CoffeeProcessor is not able to substitute the concrete coffee classes with their subclasses
 //6. We are not following the interface segregation principle - CoffeeProcessor is not able to segregate the coffee classes into different interfaces
-//7. We are not following the dependency inversion principle - CoffeeProcessor is not able to invert the dependency of the concrete coffee classes
-//8. We are not following the liskov substitution principle - CoffeeProcessor is not able to substitute the concrete coffee classes with their subclasses
-//9. We are not following the interface segregation principle - CoffeeProcessor is not able to segregate the coffee classes into different interfaces
     
