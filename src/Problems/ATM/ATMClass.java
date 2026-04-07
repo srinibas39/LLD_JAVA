@@ -39,7 +39,7 @@ public class ATMClass {
         if(state == ATMState.DISPENSE_CASH) {
             throw new IllegalArgumentException("Transaction is in progress");
         }
-        state = ATMState.IDLE;
+        state = ATMState.IDLE   ;
         id = null;
     }
 
