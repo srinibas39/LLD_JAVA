@@ -1,0 +1,181 @@
+@startuml CarRentalSystem
+
+skinparam classAttributeIconSize 0
+skinparam packageStyle rectangle
+
+package "CarRentalSystem" {
+  class Main {
+    + {static} main(args: String[]): void
+  }
+}
+
+package "CarRentalSystem.models" {
+  class VehicleRentalSystem {
+    - stores: List<Store>
+    - users: List<User>
+    - reservations: List<Reservation>
+    - bills: List<Bill>
+    - payments: List<Payment>
+    + addStore(store: Store): void
+    + addUser(user: User): void
+    + addReservation(reservation: Reservation): void
+    + addBill(bill: Bill): void
+    + addPayment(payment: Payment): void
+    + removeStore(store: Store): void
+    + removeUser(user: User): void
+  }
+
+  class Store {
+    - storeID: int
+    - storeName: String
+    - storeAddress: String
+    - storeCity: String
+    - storeState: String
+    - storeCountry: String
+    - storePincode: String
+    - location: Location
+    - vehicleManager: VehicleManager
+    - reservationManager: ReservationManager
+    - billManager: BillManager
+  }
+
+  class Location {
+    - buildingNo: int
+    - area: String
+    - city: String
+    - state: String
+    - country: String
+    - pincode: String
+  }
+
+  class VehicleManager {
+    - vehicles: List<Vehicle>
+    + addVehicle(vehicle: Vehicle): void
+    + removeVehicle(vehicle: Vehicle): void
+    + getVehicle(vehicleID: int): Vehicle
+  }
+
+  class ReservationManager {
+    - reservations: List<Reservation>
+    + addReservation(reservation: Reservation): void
+    + removeReservation(reservation: Reservation): void
+    + getReservation(reservationID: int): Reservation
+  }
+
+  class BillManager {
+    - bills: List<Bill>
+    + addBill(bill: Bill): void
+    + removeBill(bill: Bill): void
+    + getBill(billID: int): Bill
+  }
+
+  class Vehicle {
+    - vehicleID: int
+    - vehicleNumber: String
+    - vehicleType: VehicleType
+    - dailyRentalCost: double
+    - vehicleStatus: VehicleStatus
+    + setDailyRentalCost(cost: double): void
+    + setVehicleStatus(status: VehicleStatus): void
+  }
+
+  class User {
+    - userId: int
+    - userName: String
+    - drivingLicenseNo: String
+  }
+
+  class Reservation {
+    - reservationID: int
+    - vehicleID: int
+    - userID: int
+    - dateBookedFrom: LocalDate
+    - dateBookedTo: LocalDate
+    - reservationType: ReservationType
+    - reservationStatus: ReservationStatus
+    + setReservationStatus(status: ReservationStatus): void
+  }
+
+  class Bill {
+    - billID: int
+    - reservationID: int
+    - totalBillAmount: double
+    - billPaid: boolean
+    + setBillPaid(billPaid: boolean): void
+  }
+
+  class Payment {
+    - paymentID: int
+    - billID: int
+    - amount: double
+    - paymentMode: PaymentMode
+    - paymentDate: LocalDate
+  }
+}
+
+package "CarRentalSystem.enums" {
+  enum ReservationType {
+    HOURLY
+    DAILY
+  }
+
+  enum ReservationStatus {
+    SCHEDULED
+    IN_USE
+    COMPLETED
+    CANCELLED
+  }
+
+  enum VehicleType {
+    FOUR_WHEELER
+    TWO_WHEELER
+  }
+
+  enum VehicleStatus {
+    AVAILABLE
+    BOOKED
+    MAINTENANCE
+  }
+
+  enum PaymentMode {
+    CREDIT_CARD
+    DEBIT_CARD
+    CASH
+    UPI
+  }
+}
+
+Main ..> VehicleRentalSystem : uses
+
+VehicleRentalSystem "1" *-- "0..*" Store
+VehicleRentalSystem "1" *-- "0..*" User
+VehicleRentalSystem "1" *-- "0..*" Reservation
+VehicleRentalSystem "1" *-- "0..*" Bill
+VehicleRentalSystem "1" *-- "0..*" Payment
+
+Store "1" *-- "1" Location
+Store "1" *-- "1" VehicleManager
+Store "1" *-- "1" ReservationManager
+Store "1" *-- "1" BillManager
+
+VehicleManager "1" o-- "0..*" Vehicle
+ReservationManager "1" o-- "0..*" Reservation
+BillManager "1" o-- "0..*" Bill
+
+Vehicle --> VehicleType
+Vehicle --> VehicleStatus
+Reservation --> ReservationType
+Reservation --> ReservationStatus
+Payment --> PaymentMode
+
+Reservation ..> User : userID
+Reservation ..> Vehicle : vehicleID
+Bill ..> Reservation : reservationID
+Payment ..> Bill : billID
+
+note right of VehicleRentalSystem
+  addPayment() marks the
+  matching Bill as paid
+end note
+
+@enduml
